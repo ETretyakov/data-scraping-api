@@ -13,7 +13,7 @@ The project uses:
 2. **aiohttp** - requesting data via HTTP/HTTPS;
 3. **bs4 (lxml)** - parsing raw HTML text documents.
 
-All used packages are listed in `requirements.txt`.
+All used packages are listed in [requirements.txt](requirements.txt).
 
 ## Project structure
 | №   | Path                           | Description                                                 |
