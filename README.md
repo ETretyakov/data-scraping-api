@@ -71,6 +71,11 @@ Command to install all dependencies from created virtual environment:
 pip install -r requirements.txt
 ```
 
+Command to run tests:
+```bash
+pytest
+```
+
 Command to run service:
 ```bash
 uvicorn app.main:app
