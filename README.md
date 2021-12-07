@@ -86,11 +86,11 @@ More details on uvicorn - [read more](https://www.uvicorn.org)
 ### Docker
 Command to build image (from the project root folder):
 ```bash
-docker build -t data-craping-api .
+docker build -t data-scraping-api .
 ```
 Command to run service and expose 80 port for access via `http://localhost:4001`
 ```bash
-docker run -d --name data-craping-api -p 4001:80 data-craping-api
+docker run -d --name data-scraping-api -p 4001:80 data-scraping-api
 ```
 
 To see all the configurations and options, go to the Docker image page: 
