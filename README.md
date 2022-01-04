@@ -63,7 +63,7 @@ python -m venv venv/
 
 Activate virtual environment:
 ```bash
-source venv/bin/python
+source venv/bin/activate
 ```
 
 Command to install all dependencies from created virtual environment:
