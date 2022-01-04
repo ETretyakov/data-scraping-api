@@ -16,8 +16,5 @@ DEBUG = config("DEBUG", cast=bool)
 PROJECT_NAME = config("PROJECT_NAME", cast=str)
 VERSION = config("VERSION", cast=str, default="1.0.0")
 
-# Security
-BACKEND_CORS_ORIGINS = list(config("BACKEND_CORS_ORIGINS", cast=CommaSeparatedStrings))
-
 # Scrapers settings
 QUOTES_SITE_ENTRYPOINT = config("QUOTES_SITE_ENTRYPOINT", cast=str)
