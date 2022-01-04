@@ -21,7 +21,7 @@ async def get_html(url: str) -> BeautifulSoup:
                 return html
 
     raise HTTPException(status_code=http_status.HTTP_501_NOT_IMPLEMENTED,
-                        detail=f"Scraper didn't succeeded in getting data:\n"
+                        detail=f"Scraper didn't succeed in getting data:\n"
                                f"\turl: {url}\n"
                                f"\tstatus code: {response.status}\n"
                                f"\tresponse text: {text}")
@@ -42,7 +42,7 @@ def get_text(element: BeautifulSoup, selector: str, strip: bool = True, delimite
 
     elements = element.select(selector=selector) if selector else [element]
     for el in elements:
-        el_text = el.text if el.text else ""
+        el_text = el.text if el else ""
         if strip:
             text += " ".join(el_text.split()) + delimiter
         else:
