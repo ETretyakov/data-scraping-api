@@ -27,9 +27,16 @@ async def get_html(url: str) -> BeautifulSoup:
                                f"\tresponse text: {text}")
 
 
-def filter_urls(elements: List[BeautifulSoup], include: List[str], first: bool = False) -> Union[List[str], str]:
+def filter_urls(
+        elements: List[BeautifulSoup],
+        include: List[str],
+        first: bool = False
+) -> Union[List[str], str]:
     urls = [a.get("href", "") for a in elements]
-    urls = [urljoin(QUOTES_SITE_ENTRYPOINT, a) for a in urls if any([s in a for s in include])]
+    urls = [
+        urljoin(QUOTES_SITE_ENTRYPOINT, a)
+        for a in urls if any([s in a for s in include])
+    ]
 
     if first:
         return urls[0] if len(urls) > 0 else None
@@ -37,7 +44,12 @@ def filter_urls(elements: List[BeautifulSoup], include: List[str], first: bool =
         return urls
 
 
-def get_text(element: BeautifulSoup, selector: str, strip: bool = True, delimiter: str = "\n") -> str:
+def get_text(
+        element: BeautifulSoup,
+        selector: str,
+        strip: bool = True,
+        delimiter: str = "\n"
+) -> str:
     text = ""
 
     elements = element.select(selector=selector) if selector else [element]
@@ -57,13 +69,26 @@ def parse_quotes(html: BeautifulSoup) -> List[Quote]:
     for element in html.select(".quote"):
         text = get_text(element=element, selector=".text")
 
-        author = Author(name=get_text(element=element, selector=".author"),
-                        url=filter_urls(elements=element.select("a"), include=["/author/"], first=True))
+        author = Author(
+            name=get_text(element=element, selector=".author"),
+            url=filter_urls(
+                elements=element.select("a"),
+                include=["/author/"], first=True
+            )
+        )
 
         tags = []
         for raw_tag in element.select(".tag"):
-            tags.append(Tag(name=get_text(element=raw_tag, selector=""),
-                            url=filter_urls(elements=[raw_tag], include=["/tag/"], first=True)))
+            tags.append(
+                Tag(
+                    name=get_text(element=raw_tag, selector=""),
+                    url=filter_urls(
+                        elements=[raw_tag],
+                        include=["/tag/"],
+                        first=True
+                    )
+                )
+            )
 
         quotes.append(Quote(text=text, author=author, tags=tags))
 
